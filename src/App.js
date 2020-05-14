@@ -2,21 +2,20 @@ import React, { useState, Component } from "react";
 import "./App.css";
 
 class App extends Component {
-  // constructor() {
-  //   this.state.count = 0;
-  //   this.onClickBtn.bind(this);
-  // }
-  // onClickBtn = () => {
-  //   const newValue = this.state.count + 1;
-  //   this.setState(newValue);
-  // };
+  constructor(props) {
+    super(props);
+    this.state = { counter: 0 };
+  }
+
   render() {
     return (
       <div className="counter" data-test="component-app">
-        <h1 data-test="counter-display">
-          Counter value: <span className="counter-value">1</span>
-        </h1>
-        <button className="counter-btn" data-test="counter-btn">
+        <h1 data-test="counter-display">Counter value: {this.state.counter}</h1>
+        <button
+          className="counter-btn"
+          data-test="counter-btn"
+          onClick={() => this.setState({ counter: this.state.counter + 1 })}
+        >
           press to increase
         </button>
       </div>
