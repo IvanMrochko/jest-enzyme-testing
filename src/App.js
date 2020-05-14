@@ -13,13 +13,12 @@ class App extends Component {
   render() {
     return (
       <div className="counter" data-test="component-app">
-        {/* <div>
-          Counter value:{" "}
-          <span className="counter-value">{this.state.count}</span>
-        </div>
-        <button className="counter-btn" onClick={this.onClickBtn}>
+        <h1 data-test="counter-display">
+          Counter value: <span className="counter-value">1</span>
+        </h1>
+        <button className="counter-btn" data-test="counter-btn">
           press to increase
-        </button> */}
+        </button>
       </div>
     );
   }
