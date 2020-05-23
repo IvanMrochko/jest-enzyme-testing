@@ -1,7 +1,7 @@
 import React, { useState, Component } from "react";
 import "./App.css";
 
-class App extends Component {
+class Counter extends Component {
   constructor(props) {
     super(props);
     this.state = { counter: 0 };
@@ -23,4 +23,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Counter;
