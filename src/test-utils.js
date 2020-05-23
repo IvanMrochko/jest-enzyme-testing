@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
+import checkPropsTypes from "check-prop-types";
 /**
  * Factory function to create a ShallowWrapper for the App component
  * @function setup
@@ -24,5 +25,14 @@ const setup = (Component, props = {}, state = null) => {
 const findByTestAttr = (wrapper, val) => {
   return wrapper.find(`[data-test="${val}"]`);
 };
+const checkProps = (component, confirmingProps) => {
+  const propError = checkPropsTypes(
+    component.propTypes,
+    confirmingProps,
+    "prop",
+    component.name
+  );
+  expect(propError).toBeUndefined();
+};
 
-export { setup, findByTestAttr };
+export { setup, findByTestAttr, checkProps };
