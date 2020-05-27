@@ -14,8 +14,8 @@ const GuessedWord = ({ guessedWords }) => {
                 ? <span data-test="guess-instructions">Try to guess the secret word</span>
                 : <div data-test="guessed-words">
                     <h3>Guessed Words</h3>
-                    <table>
-                        <thead>
+                    <table className="table table-sm">
+                        <thead className="thead-light">
                             <tr><th>Guess</th><th>Matching latters</th></tr>
                         </thead>
                         <tbody>
