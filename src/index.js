@@ -5,14 +5,17 @@ import Counter from "./pages/counter/Counter";
 import Jotto from "./pages/jotto";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
+import { Provider } from 'react-redux';
+import store from './configureStore'
 ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      <Route exact path="/" component={Counter} />
-      <Route path="/jotto" component={Jotto} />
-    </Switch>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Counter} />
+        <Route path="/jotto" component={Jotto} />
+      </Switch>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
 
