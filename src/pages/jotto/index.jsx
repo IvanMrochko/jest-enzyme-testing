@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Congrats from './congrats';
 
 class Jotto extends Component {
   render() {
