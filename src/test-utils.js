@@ -1,6 +1,12 @@
 import React from "react";
 import { shallow } from "enzyme";
 import checkPropsTypes from "check-prop-types";
+import rootReducer from './pages/store'
+import { createStore } from 'redux'
+
+export const storeFactory = (initialState) => {
+  return createStore(rootReducer, initialState);
+}
 /**
  * Factory function to create a ShallowWrapper for the App component
  * @function setup
@@ -9,8 +15,9 @@ import checkPropsTypes from "check-prop-types";
  * @param {object} state - initial state for setup
  * @returns {ShallowWrapper}
  */
-const setup = (Component, props = {}, state = null) => {
-  const wrapper = shallow(<Component {...props} />);
+const setup = (Component, props = {}, state = null, initState = {}) => {
+  const store = !!initState && storeFactory(initState);
+  const wrapper = shallow(<Component {...props} store={store} />);
   if (state) wrapper.setState(state);
   return wrapper;
 };
