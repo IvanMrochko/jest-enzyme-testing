@@ -1,14 +1,14 @@
 import { actionTypes } from './jottoActions'
 /** 
-* @function successReducer
+* @function guessedWordsReducer
 * @param {array} state - Array of guessed words
 * @param {object} action -  action to be reduced.
-* @returns {bolean} - new success state.
+* @returns {arrry} - new success state.
 */
 export default (state = false, action) => {
     switch (action.type) {
-        case (actionTypes.CORRECT_GUESS):
-            return true;
+        case (actionTypes.GUESS_WORD):
+            return {};
         default:
             return state;
     }
