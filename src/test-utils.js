@@ -2,10 +2,13 @@ import React from "react";
 import { shallow } from "enzyme";
 import checkPropsTypes from "check-prop-types";
 import rootReducer from './pages/store'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import { middlewares } from './configureStore';
+
 
 export const storeFactory = (initialState) => {
-  return createStore(rootReducer, initialState);
+  const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
+  return createStoreWithMiddleware(rootReducer, initialState);
 }
 /**
  * Factory function to create a ShallowWrapper for the App component
