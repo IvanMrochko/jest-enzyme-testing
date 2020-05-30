@@ -5,10 +5,10 @@ import { actionTypes } from './jottoActions'
 * @param {object} action -  action to be reduced.
 * @returns {arrry} - new success state.
 */
-export default (state = false, action) => {
+export default (state = [], action) => {
     switch (action.type) {
         case (actionTypes.GUESS_WORD):
-            return {};
+            return [...state, action.payload];
         default:
             return state;
     }
