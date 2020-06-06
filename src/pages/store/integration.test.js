@@ -70,7 +70,6 @@ describe('guessWord action dispatcher', () => {
                     letterMatchCount: 5
                 }]
             }
-            console.log(newState)
             expect(newState).toEqual(expectedStore)
         });
     })

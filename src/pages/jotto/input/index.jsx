@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { guessWord } from '../../store/jottoActions';
 
-export class Input extends Component {
+export class UnconnectedInput extends Component {
 
 
     render() {
-        console.log(this.props.success);
         const contents =
             this.props.success
                 ? null
@@ -38,4 +38,4 @@ const mapStateToProps = ({ success }) => {
 };
 
 
-export default connect(mapStateToProps, null)(Input)
+export default connect(mapStateToProps, { guessWord })(UnconnectedInput)

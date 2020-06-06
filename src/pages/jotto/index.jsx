@@ -2,17 +2,27 @@ import React, { Component } from "react";
 import Congrats from './congrats';
 import GuessedWord from "./guessed-words";
 import Input from "./input"
-class Jotto extends Component {
+import { connect } from "react-redux";
+import { getSecretWord } from "../store/jottoActions";
+
+export class UnconnectedApp extends Component {
+
+  componentDidMount() {
+    //get the secret word from the server
+    this.props.getSecretWord();
+  }
   render() {
     return <div className="container">
       <h1>Jotto</h1>
+      <Congrats success={this.props.success} />
       <Input />
-      <Congrats success={true} />
-      <GuessedWord guessedWords={[{
-        guessedWord: 'train', letterMatchCount: 3
-      }]} />
+      <GuessedWord guessedWords={this.props.guessedWords} />
     </div>;
   }
 }
 
-export default Jotto;
+const mapStateToProps = ({ success, guessedWords, secretWord }) => {
+  return { success, guessedWords, secretWord }
+}
+
+export default connect(mapStateToProps, { getSecretWord })(UnconnectedApp);

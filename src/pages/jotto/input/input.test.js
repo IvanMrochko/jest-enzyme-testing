@@ -1,11 +1,11 @@
 import React from 'react';
 import { setup, findByTestAttr } from "../../../test-utils";
 import Input from './index';
+import { guessWord } from '../../store/jottoActions';
 
 
 
 describe('render ', () => {
-
     describe('word has not been guessed', () => {
         let componentWrapper;
 
@@ -53,7 +53,19 @@ describe('render ', () => {
         })
     })
 })
-describe('update state ', () => {
-
+describe('redux props ', () => {
+    test('has success piece of state as prop ', () => {
+        const success = true;
+        const wrapper = setup(Input, null, null, { success });
+        const componentWrapper = wrapper.dive().dive();
+        const successProp = componentWrapper.instance().props.success;
+        expect(successProp).toBe(success)
+    })
+    test('`guessWord` action creator iis a function prop', () => {
+        const wrapper = setup(Input);
+        const componentWrapper = wrapper.dive().dive();
+        const guessWordProp = componentWrapper.instance().props.guessWord;
+        expect(guessWordProp).toBeInstanceOf(Function);
+    })
 })
 
