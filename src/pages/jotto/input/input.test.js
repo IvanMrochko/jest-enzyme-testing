@@ -1,8 +1,8 @@
 import React from 'react';
 import { setup, findByTestAttr } from "../../../test-utils";
-import Input from './index';
+import Input, { UnconnectedInput } from './index';
 import { guessWord } from '../../store/jottoActions';
-
+import { shallow } from 'enzyme';
 
 
 describe('render ', () => {
@@ -67,5 +67,40 @@ describe('redux props ', () => {
         const guessWordProp = componentWrapper.instance().props.guessWord;
         expect(guessWordProp).toBeInstanceOf(Function);
     })
+})
+
+describe('`guessedWord action creator  call` ', () => {
+    let guessedWordMock;
+    let wrapper;
+    const guessedWord = 'train';
+    beforeEach(() => {
+        guessedWordMock = jest.fn();
+        const props = {
+            guessWord: guessedWordMock
+        }
+
+        wrapper = shallow(<UnconnectedInput {...props} />);
+        //add value to input box
+        wrapper.setState({ currentGuess: guessedWord })
+
+        const button = findByTestAttr(wrapper, 'submit-button');
+        button.simulate('click', { preventDefault() { } });
+
+    })
+    test('simulate onclick on submit', () => {
+        const guessedWordMockCallCount = guessedWordMock.mock.calls.length;
+        expect(guessedWordMockCallCount).toBe(1);
+    });
+
+    test('calls  guessedWord with input value as argument', () => {
+        const guessedWordArg = guessedWordMock.mock.calls[0][0];
+        console.log(guessedWordMock.mock.calls);
+        expect(guessedWordArg).toBe(guessedWord);
+    })
+    test('input box clear on submit', () => {
+
+        expect(wrapper.state('currentGuess')).toBe('')
+    })
+
 })
 
